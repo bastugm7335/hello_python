@@ -4,6 +4,7 @@ import random
 
  
 pygame.init()
+
  
 FPS = 60
 FramePerSec = pygame.time.Clock()
@@ -38,6 +39,7 @@ class Enemy(pygame.sprite.Sprite):
  
       def draw(self, surface):
         surface.blit(self.image, self.rect) 
+       
  
  
 class Player(pygame.sprite.Sprite):
@@ -72,6 +74,7 @@ while True:
     for event in pygame.event.get():              
         if event.type == QUIT:
             pygame.quit()
+            
             sys.exit()
     P1.update()
     E1.move()
