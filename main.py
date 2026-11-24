@@ -18,7 +18,7 @@ CYAN = (0,255,255)
  
 # Screen information
 SCREEN_WIDTH = 400
-SCREEN_HEIGHT = 600
+SCREEN_HEIGHT = 700
  
 DISPLAYSURF = pygame.display.set_mode((400,600))
 DISPLAYSURF.fill(WHITE)
