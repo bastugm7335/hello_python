@@ -1,6 +1,7 @@
 import math
 import random
 import sys
+from pathlib import Path
 
 import pygame
 from pygame.locals import K_DOWN, K_LEFT, K_RIGHT, K_UP, K_p, K_r, QUIT
@@ -20,6 +21,17 @@ BLACK = (20, 20, 30)
 WHITE = (255, 255, 255)
 CYAN = (0, 255, 255)
 
+ASSET_DIR = Path(__file__).resolve().parent
+
+
+def load_image(filename):
+    path = ASSET_DIR / filename
+    try:
+        return pygame.image.load(path).convert_alpha()
+    except (FileNotFoundError, pygame.error) as exc:
+        raise RuntimeError(f"Required asset not found or could not be loaded: {path}") from exc
+
+
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Road Escape")
 
@@ -34,7 +46,7 @@ except pygame.error:
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, level):
         super().__init__()
-        self.image = pygame.image.load("enemy.png").convert_alpha()
+        self.image = load_image("enemy.png")
         self.rect = self.image.get_rect()
         self.reset(level)
 
@@ -64,7 +76,7 @@ class Enemy(pygame.sprite.Sprite):
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("player.png").convert_alpha()
+        self.image = load_image("player.png")
         self.rect = self.image.get_rect()
         self.rect.center = (SCREEN_WIDTH // 2, 530)
         self.speed = 6
