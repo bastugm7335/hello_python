@@ -1,9 +1,11 @@
 import math
 import random
 import sys
+import numpy as np
 
 import pygame
 from pygame.locals import K_DOWN, K_LEFT, K_RIGHT, K_UP, K_p, K_r, QUIT
+
 
 
 pygame.init()
@@ -21,7 +23,8 @@ WHITE = (255, 255, 255)
 CYAN = (0, 255, 255)
 
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Road Escape")
+RND_NUM = np.random.rand()
+pygame.display.set_caption(f"Road Escape {RND_NUM}")
 
 try:
     FONT = pygame.font.Font("C:\\Windows\\Fonts\\arial.ttf", 24)
